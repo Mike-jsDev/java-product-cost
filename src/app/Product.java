@@ -2,9 +2,9 @@ package app;
 
 public class Product {
 
-    String name;
-    int quota;
-    double price;
+    private String name;
+    private int quota;
+    private double price;
 
     public Product(String name, int quota, double price) {
         this.name = name;
@@ -26,14 +26,21 @@ public class Product {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder massageBuilder = new StringBuilder();
 
-        sb.append("Product: ").append(name)
-                .append(", quota is ").append(quota).append(" ")
+        massageBuilder
+                .append("Product: ")
+                .append(name)
+                .append(", quota is ")
+                .append(quota)
+                .append(" ")
                 .append(Constants.MEASURE)
-                .append(", price is ").append(Constants.CURRENCY)
-                .append(" ").append(price).append(".");
+                .append(", price is ")
+                .append(Constants.CURRENCY)
+                .append(" ")
+                .append(price)
+                .append(".");
 
-        return sb.toString();
+        return massageBuilder.toString();
     }
 }

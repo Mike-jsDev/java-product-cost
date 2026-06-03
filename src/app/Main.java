@@ -18,11 +18,29 @@ public class Main {
         CalcCostDelivery costDelivery = new CalcCostDelivery();
         double deliveryCost = costDelivery.calcCost(product);
 
-        String baseOutput = product + "\nCost is " +
-                Constants.CURRENCY + " " + baseCost + ".";
+        StringBuilder baseBuilder = new StringBuilder();
 
-        String deliveryOutput = product + "\nCost is " +
-                Constants.CURRENCY + " " + deliveryCost + ".";
+        baseBuilder
+                .append(product)
+                .append("\nCost is ")
+                .append(Constants.CURRENCY)
+                .append(" ")
+                .append(baseCost)
+                .append(".");
+
+        String baseOutput = baseBuilder.toString();
+
+        StringBuilder deliveryBuilder = new StringBuilder();
+
+        deliveryBuilder
+                .append(product)
+                .append("\nCost is ")
+                .append(Constants.CURRENCY)
+                .append(" ")
+                .append(deliveryCost)
+                .append(".");
+
+        String deliveryOutput = deliveryBuilder.toString();
 
         getOutput(baseOutput);
         getOutput(deliveryOutput);
