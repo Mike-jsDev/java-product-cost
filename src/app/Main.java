@@ -8,36 +8,43 @@ public class Main {
 
     public static void main(String[] args) {
         balance = getBalance();
-        validateAmount(balance, getAmount());
+
+        try {
+            double amount = getAmount();
+            validateAmount(balance, amount);
+            balance = getBalance(balance, amount);
+            System.out.printf("Funds are OK. Purchase paid.%nBalance is USD %.2f", balance);
+        } catch (InvalidInputException | FundsException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     private static double getBalance() {
-        return 1000.00; // Наявні кошти на рахунку
+        return 1000.00;
     }
 
     private static double getAmount() {
         System.out.printf("Balance is USD %.2f.%n" +
                 "Enter purchase amount, USD: ", balance);
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextDouble();
-    }
+        String input = scanner.nextLine().trim();
 
-    // Метод валідації наявних коштів
-    private static void validateAmount(double balance, double withdrawal) {
-
-        if (withdrawal > balance) {
-            try {
-                throw new FundsException("Insufficient funds!");
-            } catch (FundsException ex) {
-                System.out.println(ex.getMessage());
-            }
-        } else {
-            balance = getBalance(balance, withdrawal);
-            System.out.printf("Funds are OK. Purchase paid.%nBalance is USD %.2f", balance);
+        try {
+            return Double.parseDouble(input);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("Amount must be a number!");
         }
     }
 
-    // Метод розрахунку наявних коштів на рахунку
+    private static void validateAmount(double balance, double withdrawal) {
+        if (withdrawal <= 0) {
+            throw new InvalidInputException("Amount must be greater than zero!");
+        }
+        if (withdrawal > balance) {
+            throw new FundsException("Insufficient funds!");
+        }
+    }
+
     private static double getBalance(double balance, double withdrawal) {
         return balance - withdrawal;
     }
