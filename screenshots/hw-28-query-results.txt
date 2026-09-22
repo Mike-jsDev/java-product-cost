@@ -1,0 +1,34 @@
+=== ALL RECORDS ===
+ id | product | price | quantity 
+----+---------+-------+----------
+  1 | Laptop  |  1000 |        5
+  2 | Phone   |   700 |        3
+  3 | Tablet  |   500 |        2
+  4 | Printer |   300 |        4
+(4 rows)
+
+
+=== LIMIT 2 ===
+ id | product | price | quantity 
+----+---------+-------+----------
+  1 | Laptop  |  1000 |        5
+  2 | Phone   |   700 |        3
+(2 rows)
+
+
+=== SUM total_cost ===
+ total_cost 
+------------
+       9300
+(1 row)
+
+
+=== GROUP BY ===
+ product | total_quantity |     average_price     
+---------+----------------+-----------------------
+ Printer |              4 |  300.0000000000000000
+ Tablet  |              2 |  500.0000000000000000
+ Phone   |              3 |  700.0000000000000000
+ Laptop  |              5 | 1000.0000000000000000
+(4 rows)
+
