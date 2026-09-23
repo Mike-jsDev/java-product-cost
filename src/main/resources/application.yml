@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: postgres
+
+server:
+  port: 8080
